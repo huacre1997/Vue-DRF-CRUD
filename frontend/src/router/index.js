@@ -1,37 +1,28 @@
 import Vue from 'vue'
-import Router from 'vue-router'
-import HelloWorld from '@/components/HelloWorld'
-import ListBook from "@/components/Book/ListBook"
-import EditBook from "@/components/Book/EditBook"
-import AddBook from "@/components/Book/AddBook"
+import VueRouter from 'vue-router'
+import ListBook from '../components/Book/ListBook'
+Vue.use(VueRouter)
 
+const routes = [
+  {
+    path: '/',
+    name: 'ListBook',
+    component: ListBook
+  },
+  // {
+  //   path: '/about',
+  //   name: 'About',
+  //   // route level code-splitting
+  //   // this generates a separate chunk (about.[hash].js) for this route
+  //   // which is lazy-loaded when the route is visited.
+  //   component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
+  // }
+]
 
-import BootstrapVue from 'bootstrap-vue'
-Vue.use(Router)
-Vue.use(BootstrapVue)
-
-export default new Router({
-  routes: [
-    {
-      path: '/',
-      name: 'HelloWorld',
-      component: HelloWorld
-    },
-    {
-      path: '/books',
-      name: 'ListBook',
-      component: ListBook
-    },
-    {
-      path: '/books/:bookId/edit',
-      name: 'EditBook',
-      component: EditBook,
-    },
-    {
-      path: '/books/add',
-      name: 'AddBook',
-      component: AddBook,
-    }
-  ],
-  mode:"history"
+const router = new VueRouter({
+  mode: 'history',
+  base: process.env.BASE_URL,
+  routes
 })
+
+export default router
